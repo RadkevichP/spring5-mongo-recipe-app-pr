@@ -8,6 +8,8 @@ jobs:
     docker:
       # specify the version you desire here
       - image: circleci/openjdk:8-jdk
+        environment:
+          CODECOV_TOKEN: 086c3fff-5a38-492d-88d5-dda6b6f497ac
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -27,9 +29,9 @@ jobs:
       # Download and cache dependencies
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "build.gradle" }}
-          # fallback to using the latest cache if no exact match is found
-          - v1-dependencies-
+            - v1-dependencies-{{ checksum "build.gradle" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
 
       - run: gradle dependencies
 
